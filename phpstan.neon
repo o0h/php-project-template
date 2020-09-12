@@ -1,0 +1,8 @@
+parameters:
+  paths:
+    - src
+    - tests/TestCase
+  level: max
+  bootstrapFiles:
+  ignoreErrors:
+    - '#Dynamic call to static method PHPUnit\\Framework\\.*#'

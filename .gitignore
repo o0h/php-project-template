@@ -1,0 +1,9 @@
+/vendor/
+tests/app/.docker/database/data
+.php_cs.cache
+.phpunit.result.cache
+
+##
+# For library
+##
+#.composer.lock

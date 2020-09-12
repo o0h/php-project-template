@@ -1,0 +1,27 @@
+version: "3.7"
+services:
+  test-app:
+    volumes:
+      - ../..:/app
+    env_file:
+      - app.env
+    container_name: please-set-your-pj-test-app-name
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    environment:
+      - PHP_IDE_CONFIG=serverName=please-set-your-pj-test-app-name
+      - DB_HOST=please-set-your-pj-test-app-db-name
+  database:
+    image: mysql:5
+    container_name: please-set-your-pj-test-app-db-name
+    environment:
+      MYSQL_DATABASE: test
+      MYSQL_USER: my_app
+      MYSQL_PASSWORD: secret
+      MYSQL_RANDOM_ROOT_PASSWORD: 'yes'
+    volumes:
+      - ./.docker/database/init:/docker-entrypoint-initdb.d
+      - ./.docker/database/data:/var/lib/mysql
+
+

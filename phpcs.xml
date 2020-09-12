@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<ruleset name="YOUR-APP">
+    <description>YOUR APP CODING RULES</description>
+
+    <arg name="extensions" value="php" />
+    <arg name="colors" />
+    <arg value="ps" />
+
+    <file>src</file>
+    <file>tests/TestCase</file>
+
+    <rule ref="PSR12" />
+    <rule ref="vendor/slevomat/coding-standard/SlevomatCodingStandard/ruleset.xml">
+        <exclude name="SlevomatCodingStandard.Classes.EmptyLinesAroundClassBraces.NoEmptyLineBeforeClosingBrace" />
+        <exclude name="SlevomatCodingStandard.Namespaces.UseOnlyWhitelistedNamespaces.NonFullyQualified" />
+        <exclude name="SlevomatCodingStandard.TypeHints.DeclareStrictTypes.IncorrectStrictTypesFormat" />
+        <exclude name="SlevomatCodingStandard.TypeHints.DeclareStrictTypes.IncorrectWhitespaceBetweenOpenTagAndDeclare" />
+    </rule>
+    <rule ref="SlevomatCodingStandard.Files.TypeNameMatchesFileName">
+        <properties>
+            <property name="rootNamespaces" type="array">
+                <element key="src" value="Vendor\Package"/>
+                <element key="tests" value="Vendor\Package\Test"/>
+            </property>
+        </properties>
+    </rule>
+
+</ruleset>

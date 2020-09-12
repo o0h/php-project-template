@@ -1,0 +1,2 @@
+--- Write initial SQL statements.
+-- CREATE DATABASE IF NOT EXISTS `test`;
