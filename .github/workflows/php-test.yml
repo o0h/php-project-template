@@ -1,0 +1,24 @@
+on: [push]
+
+jobs:
+  test:
+    name: PHP tests ans lint
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Build image
+        uses: ./.github/actions/php-test
+      - name: Cache dependencies
+        uses: actions/cache@v1
+        with:
+          path: ~/.composer/cache/files
+          key: global-composer-files-cache-${{ hashFiles('composer.json') }}
+      - name: Install dependencies
+        run: "composer install --prefer-dist --no-progress --no-suggest"
+      - name: Run linter
+        run: composer lint
+      - name: Run test suite
+        run: composer test
