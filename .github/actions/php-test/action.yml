@@ -1,9 +1,5 @@
-# action.yml
-name: 'Hello World'
-description: 'Greet someone and record the time'
-outputs:
-  time: # id of output
-    description: 'The time we greeted you'
+name: 'PHP app image'
+description: 'PHP test app'
 runs:
   using: 'docker'
   image: '../../../tests/app/Dockerfile'

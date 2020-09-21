@@ -3,15 +3,13 @@ services:
   test-app:
     volumes:
       - ../..:/app
+      - ./.docker/files/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
     env_file:
       - app.env
     container_name: please-set-your-pj-test-app-name
     build:
       context: ./
       dockerfile: ./Dockerfile
-    environment:
-      - PHP_IDE_CONFIG=serverName=please-set-your-pj-test-app-name
-      - DB_HOST=please-set-your-pj-test-app-db-name
   database:
     image: mysql:5
     container_name: please-set-your-pj-test-app-db-name
