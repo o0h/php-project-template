@@ -9,7 +9,3 @@ foreach (range(1, 4) as $k) {
     var_dump($k);
     if(empty($k)) echo 'empty!!', PHP_EOL;
 }
-
-$a = 'aaa';
-
-    function hogehoge($v) { return null;}
