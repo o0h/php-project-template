@@ -1,8 +1,8 @@
-on: [push]
+on: [pull_request]
 
 jobs:
   test:
-    name: PHP tests
+    name: PHP lint
 
     runs-on: ubuntu-latest
 
@@ -19,5 +19,13 @@ jobs:
           # key: global-composer-files-cache-${{ hashFiles('composer.lock') }} # if composer.lock is exists
       - name: Install dependencies
         run: "composer install --prefer-dist --no-progress --no-suggest"
-      - name: Run test suite
-        run: composer test
+      - name: Setup reviewdog
+        uses: reviewdog/action-setup@v1
+      - name: Check CS
+        env:
+          REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: composer cs -- -n --report=emacs | reviewdog -reporter=github-pr-review -efm='%f:%l:%c:%m'
+      - name: Check Stan
+        env:
+          REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: composer stan -- --error-format=raw | reviewdog -reporter=github-pr-review -f=phpstan
